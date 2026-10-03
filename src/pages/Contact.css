@@ -1,0 +1,122 @@
+/* ── Contact Page ── */
+.contact-page {
+  background-color: var(--color-background);
+}
+
+.contact-header {
+  height: 55vh;
+  background-image: url('/products/Pink latte/Pink latte.PNG');
+  background-size: cover;
+  background-position: center 20%;
+  position: relative;
+}
+
+.contact-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.10) 50%
+  );
+}
+
+.contact-header > div {
+  position: relative;
+  z-index: 10;
+}
+
+.contact-header h1 {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ── Contact Section ── */
+.contact-section {
+  grid-template-columns: 1fr 1fr;
+  padding: 8rem 5%;
+  gap: 6rem;
+}
+
+.contact-info h2 {
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.contact-info > p {
+  color: var(--color-text-medium);
+}
+
+.contact-details {
+  margin-top: 2.5rem;
+}
+
+.contact-details .fw-500 {
+  color: var(--color-text-dark);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-width: 70px;
+}
+
+.contact-details span:not(.fw-500),
+.contact-details a {
+  color: var(--color-text-medium);
+  font-size: 0.95rem;
+}
+
+.hover-link {
+  transition: var(--transition-fast);
+}
+
+.hover-link:hover {
+  color: var(--color-primary-pink) !important;
+}
+
+/* ── Contact Form ── */
+.contact-form {
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1.1rem 1.4rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  transition: var(--transition-fast);
+  border-radius: 0;
+  color: var(--color-text-dark);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--color-text-light);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-text-dark);
+  box-shadow: 0 0 0 1px var(--color-text-dark);
+}
+
+.form-group {
+  width: 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 5rem 5%;
+  }
+}
