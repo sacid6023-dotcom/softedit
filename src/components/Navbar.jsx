@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { Search, ShoppingBag, User, X, Plus, Minus, Menu, ShieldCheck } from 'lucide-react';
 import './Navbar.css';
 import { useCart } from '../CartContext';
+import SearchOverlay from './SearchOverlay';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartItems, isCartOpen, toggleCart, updateQuantity, checkoutWithWhatsApp, removeFromCart, getCartTotal } = useCart();
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -55,10 +57,7 @@ export default function Navbar() {
         </div>
       </div>
       <nav className="navbar container flex justify-between items-center relative">
-        <div className="logo-container" style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '1rem' }}>
-          <button className="mobile-menu-btn icon-btn" onClick={() => setIsMobileMenuOpen(true)}>
-            <Menu size={24} />
-          </button>
+        <div className="logo-container" style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
           <Link to="/" className="logo">
             <img src="/logo.png" alt="Soft Edit Cosmetics" style={{ height: '70px', objectFit: 'contain' }} />
           </Link>
@@ -69,15 +68,18 @@ export default function Navbar() {
           <Link to="/lip-glosses" className="nav-link">LIP GLOSSES</Link>
           <Link to="/lipsticks" className="nav-link">LIPSTICKS</Link>
           <Link to="/about" className="nav-link">ABOUT</Link>
+          <Link to="/contact" className="nav-link">CONTACT</Link>
         </div>
 
         <div className="nav-icons flex gap-4 items-center" style={{ flex: 1, justifyContent: 'flex-end', position: 'relative' }}>
-          <button className="icon-btn" aria-label="Search"><Search size={20} strokeWidth={1.5} /></button>
+          <button className="icon-btn" aria-label="Search" onClick={() => setIsSearchOpen(true)}><Search size={20} strokeWidth={1.5} /></button>
           <button className="icon-btn cart-btn" aria-label="Cart" onClick={toggleCart}>
             <ShoppingBag size={20} strokeWidth={1.5} />
             {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
           </button>
-          
+          <button className="mobile-menu-btn icon-btn" onClick={() => setIsMobileMenuOpen(true)}>
+            <Menu size={24} />
+          </button>
         </div>
       </nav>
 
@@ -102,13 +104,13 @@ export default function Navbar() {
                   <div className="cart-items-list flex-col gap-4">
                     {cartItems.map(item => (
                       <div key={item.name} className="cart-item">
-                        <div className="cart-item-img mr-3">
+                        <div className="cart-item-img mr-3" style={{ flexShrink: 0 }}>
                           <img src={item.image} alt={item.name} style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px'}} />
                         </div>
-                        <div className="cart-item-info flex-1">
-                          <div className="flex justify-between w-full">
-                            <h4>{item.name.toUpperCase()}</h4>
-                            <button className="icon-btn remove-btn" onClick={() => removeFromCart(item.name)}><X size={16}/></button>
+                        <div className="cart-item-info flex-1" style={{ minWidth: 0 }}>
+                          <div className="flex justify-between w-full items-start gap-2">
+                            <h4 style={{ margin: 0, paddingRight: '0.5rem', wordBreak: 'break-word' }}>{item.name.toUpperCase()}</h4>
+                            <button className="icon-btn remove-btn" onClick={() => removeFromCart(item.name)} style={{ padding: '0.2rem', marginTop: '-0.2rem' }}><X size={16}/></button>
                           </div>
                           <span className="text-sm text-light mt-1 block">₹{item.price}</span>
                           <div className="cart-item-qty mt-3">
@@ -161,10 +163,14 @@ export default function Navbar() {
               <Link to="/lip-glosses" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>LIP GLOSSES</Link>
               <Link to="/lipsticks" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>LIPSTICKS</Link>
               <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>ABOUT</Link>
+              <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>CONTACT</Link>
             </div>
           </div>
         </div>
       )}
+
+      {/* Search Overlay */}
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }

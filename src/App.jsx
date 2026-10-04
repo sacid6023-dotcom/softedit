@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -9,6 +9,7 @@ import About from './pages/About';
 
 import Contact from './pages/Contact';
 import LegalPage from './pages/LegalPage';
+import PromoPopup from './components/PromoPopup';
 
 // Legal Page Contents
 const privacyContent = (
@@ -111,11 +112,15 @@ const returnsContent = (
 );
 
 function App() {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
     <div className="app-container flex flex-col min-h-screen">
       <ScrollToTop />
+      <PromoPopup />
       <Navbar />
-      <main style={{ flex: '1 0 auto' }}>
+      <main className={isHome ? '' : 'main-content'} style={{ flex: '1 0 auto' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lip-glosses" element={<Products category="Lip Glosses" />} />

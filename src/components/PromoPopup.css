@@ -1,0 +1,201 @@
+.promo-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(30, 25, 23, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.promo-popup-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.promo-popup-content {
+  background-color: var(--color-background);
+  width: 90%;
+  max-width: 420px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-popup-overlay.open .promo-popup-content {
+  transform: translateY(0) scale(1);
+}
+
+.promo-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.promo-close-btn:hover {
+  background-color: var(--color-white);
+  transform: scale(1.05);
+}
+
+.promo-image-container {
+  height: 160px;
+  background: linear-gradient(135deg, var(--color-soft-cream) 0%, var(--color-primary-pink) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle pattern overlay */
+.promo-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.sparkle-icon {
+  font-size: 3rem;
+  color: var(--color-white);
+  z-index: 1;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: float-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes float-sparkle {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-5px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+
+.promo-text-content {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.promo-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dark);
+  margin-bottom: 0.8rem;
+}
+
+.promo-divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-primary-pink);
+  margin: 0 auto 1.5rem;
+}
+
+.promo-offers {
+  width: 100%;
+}
+
+.promo-offer-item {
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--color-text-medium);
+  margin-bottom: 0.5rem;
+}
+
+.promo-offer-item strong {
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.promo-offer-highlight {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-pink);
+  text-transform: uppercase;
+  padding: 0.6rem 0.5rem;
+  background-color: rgba(232, 160, 168, 0.1);
+  border-radius: 4px;
+}
+
+.promo-no-thanks {
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.promo-no-thanks:hover {
+  color: var(--color-text-dark);
+}
+
+@media (max-width: 480px) {
+  .promo-popup-content {
+    width: 92%;
+    margin: 0 auto;
+  }
+  
+  .promo-image-container {
+    height: 130px;
+  }
+  
+  .sparkle-icon {
+    font-size: 2.5rem;
+  }
+  
+  .promo-title {
+    font-size: 1.5rem;
+  }
+  
+  .promo-text-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .promo-offer-item {
+    font-size: 1rem;
+  }
+  
+  .promo-offer-highlight {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+}

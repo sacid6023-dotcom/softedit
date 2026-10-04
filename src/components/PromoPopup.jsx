@@ -1,0 +1,68 @@
+import { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import './PromoPopup.css';
+
+export default function PromoPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [hasClosed, setHasClosed] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has already closed the popup in this session
+    const popupClosed = sessionStorage.getItem('promoPopupClosed');
+    
+    if (!popupClosed) {
+      // Show popup after 10 seconds
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 10000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const closePopup = () => {
+    setIsOpen(false);
+    setHasClosed(true);
+    sessionStorage.setItem('promoPopupClosed', 'true');
+  };
+
+  if (!isOpen && !hasClosed) return null;
+
+  return (
+    <div className={`promo-popup-overlay ${isOpen ? 'open' : ''}`} onClick={closePopup}>
+      <div className="promo-popup-content" onClick={(e) => e.stopPropagation()}>
+        <button className="promo-close-btn" onClick={closePopup} aria-label="Close">
+          <X size={20} strokeWidth={1.5} />
+        </button>
+        
+        <div className="promo-image-container">
+          <div className="promo-image-placeholder">
+            <span className="sparkle-icon">✦</span>
+          </div>
+        </div>
+        
+        <div className="promo-text-content">
+          <h2 className="promo-title">THE FESTIVE EDIT</h2>
+          <div className="promo-divider"></div>
+          
+          <div className="promo-offers flex-col gap-2 mb-6 w-full">
+            <p className="promo-offer-item">2 FOR <strong>₹1199</strong></p>
+            <p className="promo-offer-item">3 FOR <strong>₹1999</strong></p>
+            <div className="promo-offer-highlight mt-2">
+              PLUS: FREEBIES ON ORDERS ₹1199+
+            </div>
+          </div>
+          
+          <Link to="/" className="btn btn-primary w-full text-center block" onClick={closePopup}>
+            SHOP THE OFFER
+          </Link>
+          
+          <button className="promo-no-thanks" onClick={closePopup}>
+            No thanks, I'll pay full price
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

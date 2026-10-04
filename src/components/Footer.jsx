@@ -36,7 +36,7 @@ export default function Footer() {
               A curated edit for your everyday luxury. Premium lip cosmetics that are 100% vegan, cruelty-free, and proudly crafted in India.
             </p>
             <div className="footer-social">
-              <a href="#" className="social-icon" aria-label="Instagram">
+              <a href="https://www.instagram.com/thesofteditcosmetics" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
               <a href="#" className="social-icon" aria-label="Facebook">
