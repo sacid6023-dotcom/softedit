@@ -63,10 +63,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="nav-links flex gap-8 items-center text-sm" style={{ flex: 1, justifyContent: 'center' }}>
+        <div className="nav-links flex gap-6 items-center text-sm" style={{ flex: 1, justifyContent: 'center' }}>
           <Link to="/" className="nav-link">HOME</Link>
           <Link to="/lip-glosses" className="nav-link">LIP GLOSSES</Link>
           <Link to="/lipsticks" className="nav-link">LIPSTICKS</Link>
+          <Link to="/ph-tint" className="nav-link">PH TINT</Link>
           <Link to="/about" className="nav-link">ABOUT</Link>
           <Link to="/contact" className="nav-link">CONTACT</Link>
         </div>
@@ -105,7 +106,7 @@ export default function Navbar() {
                     {cartItems.map(item => (
                       <div key={item.name} className="cart-item">
                         <div className="cart-item-img mr-3" style={{ flexShrink: 0 }}>
-                          <img src={item.image} alt={item.name} style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px'}} />
+                          <img src={item.image} alt={item.name} style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px'}} onError={(e) => { e.target.src = '/products/Bellini/Bellini.PNG'; }} />
                         </div>
                         <div className="cart-item-info flex-1" style={{ minWidth: 0 }}>
                           <div className="flex justify-between w-full items-start gap-2">
@@ -162,6 +163,7 @@ export default function Navbar() {
               <Link to="/" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>HOME</Link>
               <Link to="/lip-glosses" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>LIP GLOSSES</Link>
               <Link to="/lipsticks" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>LIPSTICKS</Link>
+              <Link to="/ph-tint" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>PH TINT</Link>
               <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>ABOUT</Link>
               <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>CONTACT</Link>
             </div>

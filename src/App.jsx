@@ -125,6 +125,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/lip-glosses" element={<Products category="Lip Glosses" />} />
           <Route path="/lipsticks" element={<Products category="Lipsticks" />} />
+          <Route path="/ph-tint" element={<Products category="PH Tint" />} />
           <Route path="/product/:productName" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

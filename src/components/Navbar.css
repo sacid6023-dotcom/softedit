@@ -103,6 +103,7 @@
   font-weight: 400;
   color: var(--color-text-dark);
   padding: 0.25rem 0;
+  white-space: nowrap;
 }
 
 .nav-link::after {

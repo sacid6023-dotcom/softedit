@@ -6,7 +6,6 @@ import { useCart } from '../CartContext';
 const productsData = {
   "Lip Glosses": [
     { name: "Barbie", image: "/products/Barbie/Barbie.PNG" },
-    { name: "Ph Tint", image: "/products/PH TINT/PH TINT.PNG" },
     { name: "Cherry cola", image: "/products/Cherry cola/Cherry cola.PNG" },
     { name: "Cranberry", image: "/products/Cranberry/cranberry.PNG" },
     { name: "Martini", image: "/products/Martini/Martini.PNG" },
@@ -18,6 +17,9 @@ const productsData = {
     { name: "Pink Latte", image: "/products/Pink latte/Pink latte.PNG" },
     { name: "Fudge", image: "/products/Fudge/Fudge.PNG" },
     { name: "Currently obsessed", image: "/products/Currently obsessed/Currently obsessed.PNG" }
+  ],
+  "PH Tint": [
+    { name: "Ph Tint", image: "/products/PH TINT/PH TINT.PNG" }
   ]
 };
 

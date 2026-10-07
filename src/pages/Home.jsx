@@ -90,6 +90,13 @@ export default function Home() {
             <Link to="/lipsticks" className="btn btn-light" style={{alignSelf: 'flex-start'}}>DISCOVER</Link>
           </div>
         </div>
+        <div className="category-card img-hover-zoom">
+          <img src="/products/PH TINT/PH TINT.PNG" alt="PH Tint" onError={(e) => { e.target.src = '/products/Bellini/Bellini.PNG'; }} />
+          <div className="category-overlay flex-col justify-end">
+            <h2 className="text-4xl text-white mb-4">PH Tint</h2>
+            <Link to="/ph-tint" className="btn btn-light" style={{alignSelf: 'flex-start'}}>DISCOVER</Link>
+          </div>
+        </div>
       </section>
 
       {/* Featured Products */}

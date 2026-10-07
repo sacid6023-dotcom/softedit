@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './PromoPopup.css';
@@ -6,25 +6,37 @@ import './PromoPopup.css';
 export default function PromoPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasClosed, setHasClosed] = useState(false);
+  const exitIntentTriggered = useRef(false);
+  const hasClosedRef = useRef(false);
 
   useEffect(() => {
-    // Check if the user has already closed the popup in this session
-    const popupClosed = sessionStorage.getItem('promoPopupClosed');
-    
-    if (!popupClosed) {
-      // Show popup after 10 seconds
-      const timer = setTimeout(() => {
+    // Show popup after 8 seconds
+    const timer = setTimeout(() => {
+      if (!hasClosedRef.current) {
         setIsOpen(true);
-      }, 10000);
-      
-      return () => clearTimeout(timer);
-    }
+      }
+    }, 8000);
+    
+    // Exit intent detection
+    const handleMouseLeave = (e) => {
+      if (e.clientY <= 0 && !exitIntentTriggered.current) {
+        exitIntentTriggered.current = true;
+        setIsOpen(true);
+      }
+    };
+    
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   const closePopup = () => {
     setIsOpen(false);
     setHasClosed(true);
-    sessionStorage.setItem('promoPopupClosed', 'true');
+    hasClosedRef.current = true;
   };
 
   if (!isOpen && !hasClosed) return null;

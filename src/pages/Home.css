@@ -172,7 +172,7 @@
 
 /* ── Shop by Category ── */
 .shop-category {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   padding-bottom: 0;
   gap: 4px;
 }
